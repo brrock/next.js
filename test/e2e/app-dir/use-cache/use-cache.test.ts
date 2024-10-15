@@ -1,16 +1,12 @@
-/* eslint-disable jest/no-standalone-expect */
 import { nextTestSetup } from 'e2e-utils'
 
 const GENERIC_RSC_ERROR =
   'An error occurred in the Server Components render. The specific message is omitted in production builds to avoid leaking sensitive details. A digest property is included on this error instance which may provide additional details about the nature of the error.'
 
 describe('use-cache', () => {
-  const { next, isNextDev, isNextDeploy, isNextStart, isTurbopack } =
-    nextTestSetup({
-      files: __dirname,
-    })
-
-  const itSkipTurbopack = isTurbopack ? it.skip : it
+  const { next, isNextDev, isNextDeploy, isNextStart } = nextTestSetup({
+    files: __dirname,
+  })
 
   it('should cache results', async () => {
     const browser = await next.browser('/?n=1')
